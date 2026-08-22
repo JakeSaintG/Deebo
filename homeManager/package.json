@@ -1,0 +1,19 @@
+{
+  "name": "homem_manager",
+  "version": "1.0.0",
+  "description": "A homelab monitoring and managament system.",
+  "license": "LGPL-3.0-or-later",
+  "author": "JakeSaintG",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
