@@ -1,7 +1,7 @@
 {
-  "name": "homem_manager",
+  "name": "homem_manager_discord",
   "version": "1.0.0",
-  "description": "A homelab monitoring and managament system.",
+  "description": "The Discord portion of the homelab monitoring and managament system.",
   "license": "LGPL-3.0-or-later",
   "author": "JakeSaintG",
   "type": "module",
