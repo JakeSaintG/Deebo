@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="homemanager.client/homemanager.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="HomeManager.Server/HomeManager.Server.csproj" />
+</Solution>

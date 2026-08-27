@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:51879",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\jakes\\Desktop\\repos\\HomeBot\\HomeManager\\HomeManager.Server\\..\\homemanager.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
