@@ -1,6 +1,12 @@
+.vscode
+
 */node_modules
 */dist
-*/bin
-*/obj
 */Properties/launchSettings.json
 **/.env
+
+*/*/bin
+*/bin
+
+*/*/obj
+*/obj
