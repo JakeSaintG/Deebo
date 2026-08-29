@@ -1,5 +1,6 @@
 import { Interaction } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { DependencyContainer } from 'tsyringe';
 
 export const getData = (): SlashCommandBuilder => {
     const builder = new SlashCommandBuilder();
@@ -10,9 +11,11 @@ export const getData = (): SlashCommandBuilder => {
 
 export default class PingCommand {
     protected interaction: Interaction;
+    protected services: DependencyContainer;
 
-    constructor(interaction: Interaction) {
+    constructor(interaction: Interaction, services: DependencyContainer) {
         this.interaction = interaction;
+        this.services = services;
     }
 
     public execute = async (): Promise<void> => {

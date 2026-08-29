@@ -16,4 +16,17 @@ client.on(Events.ClientReady, (readyClient) => {
     console.log(`Logged in as ${readyClient.user.tag}!`);
 });
 
+client.on(Events.InteractionCreate, async interaction => {
+    try {
+        if (!interaction.isCommand()) return;
+        const Command = commandsMap[interaction.commandName];
+        if (!Command) return;
+        
+        const CommandClass = new Command(interaction, container);
+        await CommandClass.execute();
+    } catch (error) {
+        // handleInteractionError(error, interaction)
+    }
+});
+
 client.login(Env.DISCORD_TOKEN);
