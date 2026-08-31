@@ -3,8 +3,8 @@
    id="Discord-Logo"
    viewBox="0 0 126.644 96"
    version="1.1"
-   sodipodi:docname="Discord-Symbol-Blurple.svg"
-   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="Deebo_icon_v1.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -18,14 +18,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="8.9166667"
-     inkscape:cx="70.878505"
-     inkscape:cy="44.523364"
-     inkscape:window-width="2048"
-     inkscape:window-height="1075"
+     inkscape:zoom="4.7844574"
+     inkscape:cx="48.385842"
+     inkscape:cy="35.427215"
+     inkscape:window-width="1464"
+     inkscape:window-height="770"
      inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
      inkscape:current-layer="Discord-Logo" />
   <defs
      id="defs1">
@@ -36,18 +36,18 @@
      id="Discord-Symbol-Blurple"
      class="cls-1"
      d="M 81.15,0 C 79.9124,2.1973 78.8011,4.4704 77.7909,6.794 68.1934,5.3544 58.4191,5.3544 48.7964,6.794 47.8114,4.4704 46.6748,2.1973 45.4373,0 36.4207,1.5407 27.6314,4.2431 19.2968,8.0568 2.779,32.5304 -1.6914,56.3725 0.5312,79.8863 c 9.6732,7.1476 20.5083,12.603 32.0505,16.0884 2.6014,-3.4854 4.8998,-7.1981 6.8698,-11.0623 -3.738,-1.3891 -7.3497,-3.1318 -10.8098,-5.1523 0.9092,-0.6567 1.7932,-1.3386 2.6519,-1.9953 20.281,9.547 43.7696,9.547 64.0758,0 0.8587,0.7072 1.7427,1.3891 2.6519,1.9953 -3.4601,2.0457 -7.0718,3.7632 -10.835,5.1776 1.97,3.8642 4.2683,7.5769 6.8698,11.0623 C 105.598,92.5146 116.433,87.0844 126.107,79.9369 128.733,52.6598 121.611,29.0197 107.29,8.0821 98.9811,4.2684 90.1918,1.5659 81.1752,0.0505 Z M 42.2802,65.4144 c -6.2383,0 -11.4159,-5.6575 -11.4159,-12.6535 0,-6.996 4.9755,-12.6788 11.3907,-12.6788 6.4152,0 11.5169,5.708 11.4159,12.6788 -0.101,6.9708 -5.026,12.6535 -11.3907,12.6535 z"
-     style="display:inline"
+     style="display:inline;fill:#800066"
      sodipodi:nodetypes="ccccccccccccccccccsssss" />
   <path
      d="m 84.077625,62.274213 c -2.656191,0 -4.830351,-1.471494 -4.830351,-9.516449 0,-8.044956 2.109915,-9.535477 4.830351,-9.535477 2.720436,0 4.76101,1.172093 4.830308,9.535477 0.0693,8.363384 -2.13133,9.516449 -4.830308,9.516449 z"
-     style="display:inline;fill:#3d4df0;fill-opacity:1;stroke-width:0.564738"
+     style="display:inline;fill:#670052;fill-opacity:1;stroke-width:0.564738"
      id="path1"
      sodipodi:nodetypes="szszs" />
   <path
      id="Discord-Symbol-Blurple-1"
      class="cls-1"
      d="m 42.2802,65.4144 c -6.2383,0 -11.4159,-5.6575 -11.4159,-12.6535 0,-6.996 4.9755,-12.6788 11.3907,-12.6788 6.4152,0 11.5169,5.708 11.4159,12.6788 -0.101,6.9708 -5.026,12.6535 -11.3907,12.6535 z"
-     style="display:inline;fill:#000000"
+     style="display:inline;fill:#333333"
      sodipodi:nodetypes="sssss"
      inkscape:label="eye_outer" />
   <path
@@ -68,13 +68,6 @@
      inkscape:transform-center-x="0.47136903"
      inkscape:transform-center-y="-2.9460646"
      inkscape:label="eye_inner_light" />
-  <rect
-     style="fill:#1a1a1a;stroke-width:1.19896"
-     id="rect2"
-     width="38.13084"
-     height="2.5794392"
-     x="44.256557"
-     y="73.457947" />
   <g
      id="g2"
      transform="translate(0,2.9172514)">
