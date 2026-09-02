@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using HomeManager.Server.Models;
 
 namespace HomeManager.Server.Controllers;
 
