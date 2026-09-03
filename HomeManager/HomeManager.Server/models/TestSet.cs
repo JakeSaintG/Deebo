@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleDBTest.Models;
 
-public class Superhero
+public class TestSet
 {
     [Key]
     public required String Id { get; set; }
