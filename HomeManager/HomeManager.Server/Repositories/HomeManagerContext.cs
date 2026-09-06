@@ -44,6 +44,6 @@ public class HomeMangerContext : DbContext
         };
 
         _testSetContext.Add(foo);
-        _testSetContext.SaveChanges();
+        // _testSetContext.SaveChanges();
     }
 }

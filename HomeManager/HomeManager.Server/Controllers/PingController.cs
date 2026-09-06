@@ -13,4 +13,10 @@ public class PingController : ControllerBase
     {
         return Ok("OK");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Post(String input)
+    {
+        return Ok($"OK: {input}");
+    }
 }
