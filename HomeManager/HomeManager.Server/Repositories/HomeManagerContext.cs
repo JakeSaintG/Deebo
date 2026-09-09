@@ -21,7 +21,7 @@ public class HomeMangerContext : DbContext
         modelBuilder.Entity<TestSet>().ToTable("TestSet");
     }
 
-    public void ShowAllCatchPhrases()
+    public void ShowAllRows()
     {
         _testSetContext.ToList().ForEach(h =>
         {
@@ -29,7 +29,7 @@ public class HomeMangerContext : DbContext
         });
     }
 
-    public TestSet? GetHeroById(string id)
+    public TestSet? GetRowById(string id)
     {
         return _testSetContext.SingleOrDefault(s => s.Id == id);
     }

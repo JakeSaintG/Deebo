@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Net;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace HomeManager.Server.Controllers;
 
@@ -9,12 +10,16 @@ namespace HomeManager.Server.Controllers;
 public class PingController : ControllerBase
 {
     [HttpGet]
+    [SwaggerOperation("Iz ping")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> Get()
     {
         return Ok("OK");
     }
 
-    [HttpGet]
+    [HttpPost]
+    [SwaggerOperation("Iz post ping")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> Post(String input)
     {
         return Ok($"OK: {input}");

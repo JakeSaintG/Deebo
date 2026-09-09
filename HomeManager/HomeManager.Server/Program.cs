@@ -8,6 +8,10 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -24,6 +28,14 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseSwagger();
+app.UseStaticFiles();
+app.UseSwaggerUI(options =>
+{
+    options.DocumentTitle = "PokeData Builder";
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+    options.InjectStylesheet("/swagger/custom.css");
+});
 
 app.MapFallbackToFile("/index.html");
 
