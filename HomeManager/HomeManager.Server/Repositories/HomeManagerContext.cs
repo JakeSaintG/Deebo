@@ -4,16 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeManager.Server.Repositories;
 
-public class HomeMangerContext : DbContext
+public class HomeManagerContext : DbContext
 {
     private DbSet<TestSet> _testSetContext { get; set; }
 
-    public HomeMangerContext() : base() {}
+    public HomeManagerContext(DbContextOptions<HomeManagerContext> options) : base(options)
+    {
+        Console.WriteLine("WE DOIN IT!");
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //TODO: Need to use appSettings
-        optionsBuilder.UseSqlite($"Data Source=./HomeManager.db;");
+        if (!optionsBuilder.IsConfigured)
+        {
+            //TODO: Need to use appSettings
+            optionsBuilder.UseSqlite($"Data Source=./HomeManager.db;");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

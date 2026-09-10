@@ -1,6 +1,9 @@
+using System.Data.Common;
 using HomeManager.Server.Models;
+using HomeManager.Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<HomeManagerContext>();
 
 // Add services to the container.
 
@@ -24,7 +27,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
