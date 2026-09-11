@@ -5,7 +5,11 @@ using HomeManager.Server.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HomeManagerContext>();
 
+builder.Services.AddScoped<Func<HomeManagerContext>>(_ => DbContextFactory.Create);
+builder.Services.AddScoped<UserService>();
+
 // Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -16,6 +20,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    using var dbContext = DbContextFactory.Create();
+    dbContext.Database.EnsureCreated();
+    // dbContext.Database.Migrate();
+}
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
