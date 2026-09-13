@@ -1,4 +1,3 @@
-using ConsoleDBTest.Models;
 using HomeManager.Server.Models;
 using Microsoft.EntityFrameworkCore;
 

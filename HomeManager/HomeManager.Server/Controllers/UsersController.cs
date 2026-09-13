@@ -1,5 +1,7 @@
+using HomeManager.Server.Models;
 using HomeManager.Server.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace HomeManager.Server.Controllers;
 
@@ -15,6 +17,8 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation("Add a user")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
     {
         var user = await _userService.CreateUserAsync(request.Name, request.Email);
@@ -22,6 +26,8 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [SwaggerOperation("Get a user by id")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> GetUser(int id)
     {
         var user = await _userService.GetUserByIdAsync(id);
@@ -33,6 +39,8 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation("Get all users")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
@@ -40,6 +48,8 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation("Make updates to a user by id")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserRequest request)
     {
         var user = await _userService.UpdateUserAsync(id, request.Name, request.Email);
@@ -51,6 +61,8 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation("Delete a user by a given id")]
+    [SwaggerResponse(200, "Request successful", typeof(Task<IActionResult>))]
     public async Task<IActionResult> DeleteUser(int id)
     {
         var success = await _userService.DeleteUserAsync(id);
@@ -63,14 +75,14 @@ public class UsersController : ControllerBase
 }
 
 // Request models
-public class CreateUserRequest
+public class CreateUserRequest: IUserRequest
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public required string Name { get; set; }
+    public string? Email { get; set; }
 }
 
 public class UpdateUserRequest
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public required string Name { get; set; }
+    public string? Email { get; set; }
 }

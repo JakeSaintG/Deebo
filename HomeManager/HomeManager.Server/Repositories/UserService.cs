@@ -1,3 +1,4 @@
+using HomeManager.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ public class UserService
 
         var user = new User
         {
+            Id = Guid.NewGuid(),
             Name = name,
             Email = email
         };
