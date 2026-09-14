@@ -10,7 +10,7 @@ namespace HomeManager.Server.Repositories;
 public class UserService
 {
     // Create a new user
-    public async Task<User> CreateUserAsync(string name, string email)
+    public async Task<User> CreateUserAsync(string name, string? email)
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -44,7 +44,7 @@ public class UserService
     }
 
     // Update a user
-    public async Task<User?> UpdateUserAsync(int id, string name, string email)
+    public async Task<User?> UpdateUserAsync(int id, string name, string? email)
     {
         using var dbContext = DbContextFactory.Create();
 
