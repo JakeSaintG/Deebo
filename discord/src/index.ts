@@ -1,4 +1,5 @@
 import { Env } from "./env";
+import "reflect-metadata";
 import { container } from 'tsyringe';
 import { PingCommand } from './commands';
 import { Client, GuildMember, PartialGuildMember, Role, GatewayIntentBits, Events } from "discord.js";
