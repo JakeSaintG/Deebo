@@ -3,6 +3,11 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import { PingCommand } from './commands';
 import { Client, GuildMember, PartialGuildMember, Role, GatewayIntentBits, Events } from "discord.js";
+import { HomeApiService } from "./services/HomeApiService";
+
+const homeApiService = new HomeApiService('kk');
+
+const discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
 
 const commandsMap: Record<string, any> = {
     ping: PingCommand,
@@ -30,4 +35,4 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
-client.login(Env.DISCORD_TOKEN);
+client.login(discordToken);
