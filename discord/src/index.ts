@@ -35,22 +35,31 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
+// move to utils
+const delay = (t: number) => new Promise(resolve => setTimeout(resolve, t));
+
+const retryAmount = Env.DISCORD_TOKEN_FROM_ENV ? 2 : 4;
+let backoff = 400;
 (async () => {
     let retries: number | null = null;
 
     do {
         console.log('Attemping Discord connection...')
-            await client.login(discordToken)
+            await client.login('discordToken')
                 .then(() => console.log('Thumbs up emoji'))
-                .catch(e => {
+                .catch(async e => {
+                    await delay(backoff);
                     console.log(`retrying... ${e}`);
+                    backoff = backoff*2;
 
-                    // TODO: settimeout and retry with current token
-                    // TODO: after 2 failures with current token, retry with token from env
-
+                    if (retries && retries >= 3) discordToken = Env.DISCORD_TOKEN;
                     if (!retries) retries = 0;
                     retries++
                 });
-    } while (retries && retries < 3);
+    } while (retries && retries < retryAmount);
 
+    if (retries == retryAmount) {
+        console.log('failed to connect to Discord bot. Exiting...');
+        process.exit(1);
+    }
 })()
