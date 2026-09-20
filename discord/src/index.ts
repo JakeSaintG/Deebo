@@ -7,7 +7,7 @@ import { HomeApiService } from "./services/HomeApiService";
 
 const homeApiService = new HomeApiService('kk');
 
-const discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
+let discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
 
 const commandsMap: Record<string, any> = {
     ping: PingCommand,
@@ -35,4 +35,22 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
-client.login(discordToken);
+(async () => {
+    let retries: number | null = null;
+
+    do {
+        console.log('Attemping Discord connection...')
+            await client.login(discordToken)
+                .then(() => console.log('Thumbs up emoji'))
+                .catch(e => {
+                    console.log(`retrying... ${e}`);
+
+                    // TODO: settimeout and retry with current token
+                    // TODO: after 2 failures with current token, retry with token from env
+
+                    if (!retries) retries = 0;
+                    retries++
+                });
+    } while (retries && retries < 3);
+
+})()
