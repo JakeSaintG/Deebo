@@ -1,9 +1,11 @@
 import { Env } from "./env";
+import { delay } from "./utils";
+import { PingCommand } from './commands';
+import { HomeApiService } from "./services/HomeApiService";
+
 import "reflect-metadata";
 import { container } from 'tsyringe';
-import { PingCommand } from './commands';
 import { Client, GuildMember, PartialGuildMember, Role, GatewayIntentBits, Events } from "discord.js";
-import { HomeApiService } from "./services/HomeApiService";
 
 const homeApiService = new HomeApiService('kk');
 
@@ -35,9 +37,6 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
-// move to utils
-const delay = (t: number) => new Promise(resolve => setTimeout(resolve, t));
-
 const retryAmount = Env.DISCORD_TOKEN_FROM_ENV ? 2 : 4;
 let backoff = 400;
 (async () => {
@@ -45,8 +44,18 @@ let backoff = 400;
 
     do {
         console.log('Attemping Discord connection...')
-            await client.login('discordToken')
-                .then(() => console.log('Thumbs up emoji'))
+            await client.login(discordToken)
+                .then(() => {
+                    console.log('Beginning log polling...');
+
+                    // poc doing stuff on an interval (checking log queue)
+                    // Still haven't decided if the bot is going to poll an "event queue" for actions or...
+                    // ...if I will implement a few express endpoints. Likely the event queue option for practice.
+                    setInterval(() => {
+                        console.log('Polling...')
+                    }, 1000);
+
+                })
                 .catch(async e => {
                     await delay(backoff);
                     console.log(`retrying... ${e}`);
@@ -63,3 +72,5 @@ let backoff = 400;
         process.exit(1);
     }
 })()
+
+// TODO: exit gracefully on ctrl+c

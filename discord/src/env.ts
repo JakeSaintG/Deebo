@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import fs from 'fs';
-import { parseBool } from './utils/parseBool';
+import { parseBool } from './utils';
 
 if (!fs.existsSync('./src/.env')) {
     console.log('Creating env file...');
