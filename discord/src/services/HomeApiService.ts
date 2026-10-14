@@ -1,18 +1,17 @@
 import { HomeApiServiceBase } from "./HomeApiServiceBase";
 
 export class HomeApiService extends HomeApiServiceBase {
-    constructor(token: string) {
-        super(token);
+    constructor() {
+        super();
     }
 
     refreshToken(token: string) {
         super.refreshToken(token);
-        super.token = 'test';
+        super.discordToken = 'test';
     }
 
     retrieveDiscordToken() {
         super.retrieveDiscordToken();
-
-        throw new Error("not Implemented");
+        console.log('fetching token...')
     }
 }

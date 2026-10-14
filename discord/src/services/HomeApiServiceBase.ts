@@ -1,20 +1,18 @@
 export class HomeApiServiceBase {
-    private _token: string = '';
+    private _discordToken: string = '';
 
-    get token(): string {
-        return this._token;
+    get discordToken(): string {
+        return this._discordToken;
     }
 
-    set token(value: string) {
-        this._token = value;
+    set discordToken(value: string) {
+        this._discordToken = value;
     }
     
-    constructor(token: string) {
-        this.token = token;
-    }
+    constructor() {}
 
     notConfiguredEarlyReturn = () => {
-        if (!this.token) return;
+        if (!this.discordToken) return;
     }
 
     refreshToken(token: string) {

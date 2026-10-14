@@ -7,7 +7,7 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import { Client, GuildMember, PartialGuildMember, Role, GatewayIntentBits, Events } from "discord.js";
 
-const homeApiService = new HomeApiService('kk');
+const homeApiService = new HomeApiService();
 
 let discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
 
@@ -51,8 +51,9 @@ let backoff = 400;
                     // poc doing stuff on an interval (checking log queue)
                     // Still haven't decided if the bot is going to poll an "event queue" for actions or...
                     // ...if I will implement a few express endpoints. Likely the event queue option for practice.
+                    // Or a single endpoint that IS the event queue. Might not work the best if internet goes out? Need to test
                     setInterval(() => {
-                        console.log('Polling...')
+                        // console.log('Polling... 1');
                     }, 1000);
 
                 })
