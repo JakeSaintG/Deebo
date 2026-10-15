@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-
 namespace HomeManager.Server.Models;
 
 public interface IUserRequest {
