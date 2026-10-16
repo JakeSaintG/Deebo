@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HomeManagerContext>();
 
 builder.Services.AddScoped<Func<HomeManagerContext>>(_ => DbContextFactory.Create);
-builder.Services.AddScoped<UserService>();
 
 // Add services to the container.
+builder.Services.AddScoped<UserService>();
 
 
 builder.Services.AddControllers();
@@ -53,3 +53,5 @@ app.UseSwaggerUI(options =>
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+Console.WriteLine("Closing app...");
