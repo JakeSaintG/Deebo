@@ -21,7 +21,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(201, "Request successful", typeof(User))]
-    public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserRequestFromBody request)
     {
         var user = await _userService.CreateUserAsync(request.Name, request.Email);
         return Ok(user);
@@ -59,7 +59,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(200, "Request successful", typeof(User))]
     [SwaggerResponse(404, "Request not found")]
-    public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
+    public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UpdateUserRequesFromBody request)
     {
         var user = await _userService.UpdateUserAsync(id, request.Name, request.Email);
         if (user == null)
@@ -87,13 +87,13 @@ public class UsersController : ControllerBase
 }
 
 // Request models
-public class CreateUserRequest: IUserRequest
+public class CreateUserRequestFromBody: IUserRequest
 {
     public required string Name { get; set; }
     public string? Email { get; set; }
 }
 
-public class UpdateUserRequest
+public class UpdateUserRequesFromBody: IUserRequest
 {
     public required string Name { get; set; }
     public string? Email { get; set; }
