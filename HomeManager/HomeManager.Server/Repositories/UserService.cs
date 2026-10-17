@@ -28,7 +28,7 @@ public class UserService
     }
 
     // Get a user by ID
-    public async Task<User?> GetUserByIdAsync(int id)
+    public async Task<User?> GetUserByIdAsync(Guid id)
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -44,7 +44,7 @@ public class UserService
     }
 
     // Update a user
-    public async Task<User?> UpdateUserAsync(int id, string name, string? email)
+    public async Task<User?> UpdateUserAsync(Guid id, string name, string? email)
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -63,7 +63,7 @@ public class UserService
     }
 
     // Delete a user
-    public async Task<bool> DeleteUserAsync(int id)
+    public async Task<bool> DeleteUserAsync(Guid id)
     {
         using var dbContext = DbContextFactory.Create();
 

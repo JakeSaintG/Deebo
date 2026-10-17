@@ -2,7 +2,7 @@ using System;
 
 namespace HomeManager.Server.Models;
 
-public class Configuration
+public class Configuration : IConfiguration
 {
     public required Guid Id { get; set; }
     public required string SelfIp  {get; set;}
@@ -14,5 +14,4 @@ public class Configuration
     public string[]? NodesIps  {get; set;}
     public bool LeaderCandidate  {get; set;}
     public string? DiscordKey  {get; set;}
-
 }
