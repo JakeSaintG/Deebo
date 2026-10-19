@@ -9,7 +9,7 @@ namespace HomeManager.Server.Controllers;
 [Route("api/[controller]")]
 public class LogController : ControllerBase
 {
-    private readonly UserService _logService;
+    private readonly LogService _logService;
 
     public LogController(UserService logService)
     {
