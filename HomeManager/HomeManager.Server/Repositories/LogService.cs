@@ -1,50 +1,46 @@
 using HomeManager.Server.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HomeManager.Server.Repositories;
 
 public class LogService
 {
-    // Create a new user
-    public async Task<User> CreateLogEntryAsync(string name, string? email)
+    // Create a new log entry
+    public async Task<LogEntry> CreateLogEntryAsync(string name, string? email)
     {
         using var dbContext = DbContextFactory.Create();
 
-        var log = new User
+        var log = new LogEntry
         {
             Id = Guid.NewGuid(),
             Name = name,
             Email = email
         };
 
-        dbContext.Users.Add(log);
+        dbContext.LogEntries.Add(log);
         await dbContext.SaveChangesAsync();
 
         return log;
     }
 
-    // Get a user by ID
-    public async Task<User?> GetLogEntryByIdAsync(Guid id)
+    // Get a log entry by ID
+    public async Task<LogEntry?> GetLogEntryByIdAsync(Guid id)
     {
         using var dbContext = DbContextFactory.Create();
 
         return await dbContext.LogEntries.FindAsync(id);
     }
 
-    // Get all users
-    public async Task<List<User>> GetAllLogEntriessAsync()
+    // Get all log entries
+    public async Task<List<LogEntry>> GetAllLogEntriessAsync()
     {
         using var dbContext = DbContextFactory.Create();
 
         return await dbContext.LogEntries.ToListAsync();
     }
 
-    // Update a user
-    public async Task<User?> AckLogEntryAsync(Guid id, string name, string? email)
+    // Update a log entry
+    public async Task<LogEntry?> AckLogEntryAsync(Guid id, string name, string? email)
     {
         using var dbContext = DbContextFactory.Create();
 

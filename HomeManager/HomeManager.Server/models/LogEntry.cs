@@ -2,14 +2,14 @@ using System;
 
 namespace HomeManager.Server.Models;
 
-public class LogEntry
+public class LogEntry: ILogEntry
 {
     public required Guid Id { get; set; }
     public required string Name { get; set; }
     public required string LogLevel { get; set; }
     public required string LogSource { get; set; }
     
-    //Maybe use a timestamp type?
+    // TODO: Maybe use a timestamp type?
     public required string LogDTS { get; set; }
     public string? LogMessage { get; set; }
 
