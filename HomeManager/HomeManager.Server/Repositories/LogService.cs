@@ -6,7 +6,7 @@ namespace HomeManager.Server.Repositories;
 public class LogService
 {
     // Create a new log entry
-    public async Task<LogEntry> CreateLogEntryAsync(string name, string? email)
+    public async Task<LogEntry> CreateLogEntryAsync(string name, string logLevel, string logSource, string logDTS, string? logMessage, bool consumed)
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -14,7 +14,11 @@ public class LogService
         {
             Id = Guid.NewGuid(),
             Name = name,
-            Email = email
+            LogLevel = logLevel,
+            LogSource = logSource,
+            LogDTS = logDTS,
+            LogMessage = logMessage,
+            Consumed = consumed,
         };
 
         dbContext.LogEntries.Add(log);
@@ -32,7 +36,7 @@ public class LogService
     }
 
     // Get all log entries
-    public async Task<List<LogEntry>> GetAllLogEntriessAsync()
+    public async Task<List<LogEntry>> GetAllLogEntriesAsync()
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -40,7 +44,7 @@ public class LogService
     }
 
     // Update a log entry
-    public async Task<LogEntry?> AckLogEntryAsync(Guid id, string name, string? email)
+    public async Task<LogEntry?> AckLogEntryAsync(Guid id, bool consumed)
     {
         using var dbContext = DbContextFactory.Create();
 
@@ -50,8 +54,7 @@ public class LogService
             return null;
         }
 
-        log.Name = name;
-        log.Email = email;
+        log.Consumed = consumed;
 
         await dbContext.SaveChangesAsync();
 

@@ -11,7 +11,7 @@ public class LogController : ControllerBase
 {
     private readonly LogService _logService;
 
-    public LogController(UserService logService)
+    public LogController(LogService logService)
     {
         _logService = logService;
     }
@@ -20,10 +20,18 @@ public class LogController : ControllerBase
     [SwaggerOperation("Add log entry")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [SwaggerResponse(201, "Request successful", typeof(User))]
-    public async Task<IActionResult> CreateUser([FromBody] CreateLogRequestFromBody request)
+    [SwaggerResponse(201, "Request successful", typeof(LogEntry))]
+    public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogRequestFromBody request)
     {
-        var user = await _logService.CreateUserAsync(request.Name, request.Email);
+        var user = await _logService.CreateLogEntryAsync(
+            request.Name,
+            request.LogLevel,
+            request.LogSource,
+            request.LogDTS,
+            request.LogMessage,
+            request.Consumed
+        );
+
         return Ok(user);
     }
 
@@ -31,10 +39,10 @@ public class LogController : ControllerBase
     [SwaggerOperation("Get log entry by id")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [SwaggerResponse(200, "Request successful", typeof(User))]
+    [SwaggerResponse(200, "Request successful", typeof(LogEntry))]
     public async Task<IActionResult> GetLogEntry(Guid id)
     {
-        var logEntry = await _logService.GetUserByIdAsync(id);
+        var logEntry = await _logService.GetLogEntryByIdAsync(id);
         if (logEntry == null)
         {
             return NotFound();
@@ -47,10 +55,10 @@ public class LogController : ControllerBase
     [SwaggerOperation("Get all log entries")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [SwaggerResponse(200, "Request successful", typeof(User[]))]
+    [SwaggerResponse(200, "Request successful", typeof(LogEntry[]))]
     public async Task<IActionResult> GetAllUsers()
     {
-        var logEntriess = await _logService.GetAllUsersAsync();
+        var logEntriess = await _logService.GetAllLogEntriesAsync();
         return Ok(logEntriess);
     }
 
@@ -58,13 +66,11 @@ public class LogController : ControllerBase
     [SwaggerOperation("Ack log by id")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [SwaggerResponse(200, "Request successful", typeof(User))]
+    [SwaggerResponse(200, "Request successful", typeof(LogEntry))]
     [SwaggerResponse(404, "Request not found")]
     public async Task<IActionResult> AckLogEntry(Guid id, [FromBody] UpdatLogRequestFromBody request)
     {
-        // TODO: Only ack/queue 
-        
-        var logEntry = await _logService.UpdateUserAsync(id, request.Name, request.Email);
+        var logEntry = await _logService.AckLogEntryAsync(id, request.Consumed);
         if (logEntry == null)
         {
             return NotFound();
@@ -76,14 +82,30 @@ public class LogController : ControllerBase
 }
 
 // Request models
-public class CreateLogRequestFromBody: IUserRequest
+public class CreateLogRequestFromBody: ILogEntry
 {
+    public required Guid Id { get; set; }
     public required string Name { get; set; }
-    public string? Email { get; set; }
+    public required string LogLevel { get; set; }
+    public required string LogSource { get; set; }
+    
+    // TODO: Maybe use a timestamp type?
+    public required string LogDTS { get; set; }
+    public string? LogMessage { get; set; }
+
+    public bool Consumed { get; set; }
 }
 
-public class UpdatLogRequestFromBody: IUserRequest
+public class UpdatLogRequestFromBody: ILogEntry
 {
+    public required Guid Id { get; set; }
     public required string Name { get; set; }
-    public string? Email { get; set; }
+    public required string LogLevel { get; set; }
+    public required string LogSource { get; set; }
+    
+    // TODO: Maybe use a timestamp type?
+    public required string LogDTS { get; set; }
+    public string? LogMessage { get; set; }
+
+    public bool Consumed { get; set; }
 }
