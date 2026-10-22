@@ -9,6 +9,7 @@ builder.Services.AddScoped<Func<HomeManagerContext>>(_ => DbContextFactory.Creat
 
 // Add services to the container.
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<LogService>();
 
 
 builder.Services.AddControllers();
@@ -45,7 +46,7 @@ app.UseSwagger();
 app.UseStaticFiles();
 app.UseSwaggerUI(options =>
 {
-    options.DocumentTitle = "PokeData Builder";
+    options.DocumentTitle = "Deebo Public API Documentation";
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
     options.InjectStylesheet("/swagger/custom.css");
 });

@@ -6,19 +6,21 @@ namespace HomeManager.Server.Repositories;
 public class LogService
 {
     // Create a new log entry
-    public async Task<LogEntry> CreateLogEntryAsync(string name, string logLevel, string logSource, string logDTS, string? logMessage, bool consumed)
+    public async Task<LogEntry> CreateLogEntryAsync(Guid? id, string name, string logLevel, string logSource, string logDTS, string? logMessage)
     {
+        Guid isAsGuid = (Guid)(id == null ? id : Guid.NewGuid());
+
         using var dbContext = DbContextFactory.Create();
 
         var log = new LogEntry
         {
-            Id = Guid.NewGuid(),
+            Id = isAsGuid,
             Name = name,
             LogLevel = logLevel,
             LogSource = logSource,
             LogDTS = logDTS,
             LogMessage = logMessage,
-            Consumed = consumed,
+            Consumed = false,
         };
 
         dbContext.LogEntries.Add(log);

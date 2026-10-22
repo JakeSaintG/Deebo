@@ -24,12 +24,12 @@ public class LogController : ControllerBase
     public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogRequestFromBody request)
     {
         var user = await _logService.CreateLogEntryAsync(
+            request.Id,
             request.Name,
             request.LogLevel,
             request.LogSource,
             request.LogDTS,
-            request.LogMessage,
-            request.Consumed
+            request.LogMessage
         );
 
         return Ok(user);
@@ -68,7 +68,7 @@ public class LogController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(200, "Request successful", typeof(LogEntry))]
     [SwaggerResponse(404, "Request not found")]
-    public async Task<IActionResult> AckLogEntry(Guid id, [FromBody] UpdatLogRequestFromBody request)
+    public async Task<IActionResult> AckLogEntry(Guid id, [FromBody] UpdateLogRequestFromBody request)
     {
         var logEntry = await _logService.AckLogEntryAsync(id, request.Consumed);
         if (logEntry == null)
@@ -84,7 +84,7 @@ public class LogController : ControllerBase
 // Request models
 public class CreateLogRequestFromBody: ILogEntry
 {
-    public required Guid Id { get; set; }
+    public Guid? Id { get; set; }
     public required string Name { get; set; }
     public required string LogLevel { get; set; }
     public required string LogSource { get; set; }
@@ -92,11 +92,9 @@ public class CreateLogRequestFromBody: ILogEntry
     // TODO: Maybe use a timestamp type?
     public required string LogDTS { get; set; }
     public string? LogMessage { get; set; }
-
-    public bool Consumed { get; set; }
 }
 
-public class UpdatLogRequestFromBody: ILogEntry
+public class UpdateLogRequestFromBody: ILogEntry
 {
     public required Guid Id { get; set; }
     public required string Name { get; set; }
