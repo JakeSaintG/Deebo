@@ -8,6 +8,8 @@ public class LogService
     // Create a new log entry
     public async Task<LogEntry> CreateLogEntryAsync(Guid? id, string name, string logLevel, string logSource, string logDTS, string? logMessage)
     {
+        // I don't like this... Should probably always assign a guid
+        // Maybe add an "idFromLogSource" field
         Guid isAsGuid = (Guid)(id == null ? id : Guid.NewGuid());
 
         using var dbContext = DbContextFactory.Create();
