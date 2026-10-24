@@ -4,6 +4,10 @@ namespace HomeManager.Server.Models;
 
 public class LogEntry: ILogEntry
 {
+    // TODO: add a monotonically increasing id
+    // - "replication_id"
+    // - will be used by replication nodes to "true up"
+
     public required Guid Id { get; set; }
     public required string Name { get; set; }
     public required string LogLevel { get; set; }
