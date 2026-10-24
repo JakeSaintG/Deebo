@@ -9,6 +9,11 @@ interface Forecast {
 }
 
 function App() {
+    // TODO: Default behavior will be to show the node page that the UI was accessed from
+    // - May want to always open UI at parent node by default?
+    //    - Would help if accessing UI from outside 
+    // - Need a pick list or app switcher to move UI to other nodes (in new tab)
+
     const [forecasts, setForecasts] = useState<Forecast[]>();
 
     useEffect(() => {
