@@ -5,6 +5,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace HomeManager.Server.Controllers;
 
+// TODO: Need to think through "private" endpoints vs "public" endpoints
+// Many of these log endpoints shouldn't be "public" or exposed on Swagger
+
 [ApiController]
 [Route("api/[controller]")]
 public class LogController : ControllerBase
@@ -50,6 +53,10 @@ public class LogController : ControllerBase
         return Ok(logEntry);
     }
 
+    // TODO: a controller for the discord bot to pull logs, send them to Discord, and then ack
+    // - ack one at a time
+    // - ack in batch? Maybe?
+
     // TODO: Okay for now but should be paginated
     [HttpGet]
     [SwaggerOperation("Get all log entries")]
@@ -78,7 +85,7 @@ public class LogController : ControllerBase
         return Ok(logEntry);
     }
 
-    // NO DELETE METHOD (maybe do one later? Log Compression?)
+    // NO DELETE METHOD (No endpoint for Log Compression. Should be done internally)
 }
 
 // Request models
@@ -94,6 +101,8 @@ public class CreateLogRequestFromBody: ILogEntry
     public string? LogMessage { get; set; }
 }
 
+// TODO: This really only should be for acking
+// Need to think of a log compression/retention but that shouldn't be an endpoint
 public class UpdateLogRequestFromBody: ILogEntry
 {
     public required Guid Id { get; set; }

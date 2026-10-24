@@ -35,6 +35,7 @@ app.MapStaticAssets();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    Console.WriteLine("Using development environment");
     app.MapOpenApi();
 }
 
