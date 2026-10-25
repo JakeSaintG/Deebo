@@ -20,7 +20,7 @@ public class LogController : ControllerBase
     }
 
     [HttpPost]
-    [SwaggerOperation("Add log entry")]
+    [SwaggerOperation("Add a log entry")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(201, "Request successful", typeof(LogEntry))]
