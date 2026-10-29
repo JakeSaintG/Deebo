@@ -7,11 +7,21 @@ export class HomeApiService extends HomeApiServiceBase {
 
     refreshToken(token: string) {
         super.refreshToken(token);
-        super.discordToken = 'test';
+        super.botToken = 'test';
     }
 
-    retrieveDiscordToken() {
-        super.retrieveDiscordToken();
+    retrieveToken() {
+        super.retrieveToken();
         console.log('fetching token...')
+    }
+
+    refreshLeaderNodeIp(token: string) {
+        super.refreshToken(token);
+        super.leaderNodeIp = 'test';
+    }
+
+    retrieveLeaderNodeIp() {
+        super.retrieveToken();
+        console.log('fetching ip...')
     }
 }

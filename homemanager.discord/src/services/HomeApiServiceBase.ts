@@ -1,25 +1,47 @@
 export class HomeApiServiceBase {
-    private _discordToken: string = '';
+    // TODO: store other node IPs
+    // In case the leader goes down but not the bot, it may need to go fishing for a new leader
+    
+    private _botToken: string = '';
 
-    get discordToken(): string {
-        return this._discordToken;
+    get botToken(): string {
+        return this._botToken;
     }
 
-    set discordToken(value: string) {
-        this._discordToken = value;
+    set botToken(value: string) {
+        this._botToken = value;
+    }
+
+    private _leaderNodeIp: string = '';
+
+    get leaderNodeIp(): string {
+        return this._leaderNodeIp;
+    }
+
+    set leaderNodeIp(value: string) {
+        this._leaderNodeIp = value;
     }
     
     constructor() {}
 
-    notConfiguredEarlyReturn = () => {
-        if (!this.discordToken) return;
+    tokenNotConfiguredEarlyReturn = () => {
+        if (!this.botToken) return;
     }
 
     refreshToken(token: string) {
-        this.notConfiguredEarlyReturn();
+        this.tokenNotConfiguredEarlyReturn();
     }
 
-    retrieveDiscordToken() {
-        this.notConfiguredEarlyReturn();
+    retrieveToken() {
+        this.tokenNotConfiguredEarlyReturn();
+    }
+
+
+    refreshLeaderNodeIp(token: string) {
+        this.tokenNotConfiguredEarlyReturn();
+    }
+
+    retrieveLeaderNodeIp() {
+        this.tokenNotConfiguredEarlyReturn();
     }
 }
