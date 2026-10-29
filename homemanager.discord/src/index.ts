@@ -54,6 +54,8 @@ let backoff = 400;
             await client.login(discordToken)
                 .then(() => {
                     console.log('Beginning log polling...');
+                    // TODO: use configured polling interval. If none, use a default
+                    // TODO: use configured amount of logs to pull/ack at once. If none, use a default
 
                     // poc doing stuff on an interval (checking log queue)
                     // Still haven't decided if the bot is going to poll an "event queue" for actions or...

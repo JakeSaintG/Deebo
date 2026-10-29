@@ -4,6 +4,7 @@
 // - "bring your own bot"
 // various interval configuration
 // - interval to pull logs
+// limit/amaount of logs to pull at once
 
 public class BotConfiguration: IBotConfiguration
 {
