@@ -24,7 +24,7 @@ public class LogController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(201, "Request successful", typeof(LogEntry))]
-    public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogRequestFromBody request)
+    public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogEntryFromBody request)
     {
         var user = await _logService.CreateLogEntryAsync(
             request.Id,
@@ -88,31 +88,7 @@ public class LogController : ControllerBase
     // NO DELETE METHOD (No endpoint for Log Compression. Should be done internally)
 }
 
-// Request models
-public class CreateLogRequestFromBody: ILogEntry
-{
-    public Guid? Id { get; set; }
-    public required string Name { get; set; }
-    public required string LogLevel { get; set; }
-    public required string LogSource { get; set; }
-    
-    // TODO: Maybe use a timestamp type?
-    public required string LogDTS { get; set; }
-    public string? LogMessage { get; set; }
-}
 
-// TODO: This really only should be for acking
-// Need to think of a log compression/retention but that shouldn't be an endpoint
-public class UpdateLogRequestFromBody: ILogEntry
-{
-    public required Guid Id { get; set; }
-    public required string Name { get; set; }
-    public required string LogLevel { get; set; }
-    public required string LogSource { get; set; }
-    
-    // TODO: Maybe use a timestamp type?
-    public required string LogDTS { get; set; }
-    public string? LogMessage { get; set; }
 
-    public bool Consumed { get; set; }
-}
+
+

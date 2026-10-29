@@ -2,7 +2,7 @@ using System;
 
 namespace HomeManager.Server.Models;
 
-public class LogConfiguration
+public interface LogConfiguration : ILogConfiguration
 {
     // retention in days
     // - Node specific

@@ -9,6 +9,13 @@ import { Client, GuildMember, PartialGuildMember, Role, GatewayIntentBits, Event
 
 const homeApiService = new HomeApiService();
 
+// TODO: Make this as bot-agnostic as possible
+// Push anything that that interacts with DISCORD down as far as possible
+// BotAdapter
+// - teamspeak etc
+// May make /slash commands difficult?
+// May just want to make it work before I get fancy... First rule of optimization 
+
 let discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
 
 const commandsMap: Record<string, any> = {
