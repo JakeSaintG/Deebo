@@ -15,6 +15,6 @@ public class Configuration : IConfiguration
     
     //Determine if a node can pick up leader responsibilities if the current one goes down
     public bool LeaderCandidate  {get; set;}
-    public DateTime? LeaderSinceDTS  {get; set;}
+    public DateTime? LeaderSinceDts  {get; set;}
     public string? DiscordKey  {get; set;}
 }

@@ -6,6 +6,7 @@ public class LogConfiguration : ILogConfiguration
 {
     // retention in days
     // - Node specific
+    // verboseLogging
     // retain errors
     // retrain warnings
     // replicate to this node?

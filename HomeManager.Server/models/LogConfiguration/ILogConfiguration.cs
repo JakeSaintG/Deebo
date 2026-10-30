@@ -2,10 +2,11 @@ using System;
 
 namespace HomeManager.Server.Models;
 
-public interface LogConfiguration : ILogConfiguration
+public interface ILogConfiguration
 {
     // retention in days
     // - Node specific
+    // verboseLogging
     // retain errors
     // retrain warnings
     // replicate to this node?

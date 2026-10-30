@@ -31,7 +31,7 @@ public class LogController : ControllerBase
             request.Name,
             request.LogLevel,
             request.LogSource,
-            request.LogDTS,
+            request.LogDts,
             request.LogMessage
         );
 

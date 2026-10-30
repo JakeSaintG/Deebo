@@ -11,7 +11,7 @@ public interface ILogEntry {
     public string LogSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     
     // TODO: Maybe use a timestamp type?
-    public string LogDTS { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public DateTime LogDts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string? LogMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public bool Consumed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

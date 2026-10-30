@@ -12,7 +12,7 @@ public class UpdateLogRequestFromBody: ILogEntry
     public required string LogSource { get; set; }
     
     // TODO: Maybe use a timestamp type?
-    public required string LogDTS { get; set; }
+    public required DateTime LogDts { get; set; }
     public string? LogMessage { get; set; }
 
     public bool Consumed { get; set; }

@@ -8,6 +8,6 @@ public interface IConfiguration {
     public bool RolesBlocked { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string[]? NodesIps { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public bool LeaderCandidate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public DateTime? LeaderSinceDTS { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public DateTime? LeaderSinceDts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string? DiscordKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 }
