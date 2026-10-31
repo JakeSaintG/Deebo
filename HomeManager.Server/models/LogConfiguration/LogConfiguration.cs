@@ -1,21 +1,15 @@
 using System;
+using System.Globalization;
 
 namespace HomeManager.Server.Models;
 
 public class LogConfiguration : ILogConfiguration
 {
-    // retention in days
-    // - Node specific
-    // verboseLogging
-    // retain errors
-    // retrain warnings
-    // replicate to this node?
-    // - prevent log replication to this node
-    // - still send logs to parent node
-    // replication_batch_size
-    // - ship log replication in batches of X until "trued up"
-    // - until next interval
-    // ack_batch_size
-    // - The amount of log entries that the discord bot can pull
-    // - until next interval
+    public int RententionInDays { get; set; }
+    public bool VerboseLogging { get; set; }
+    public bool RetainAllErrors { get; set; }
+    public bool RetainAllWarnings { get; set; }
+    public bool ReplicateToThisNode { get; set; } 
+    public int ReplicationBatchSize { get; set; }
+    public int AckBatchSize { get; set; }
 }

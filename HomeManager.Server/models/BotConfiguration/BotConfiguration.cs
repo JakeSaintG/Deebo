@@ -8,5 +8,8 @@
 
 public class BotConfiguration: IBotConfiguration
 {
-    
+    public string BotKey {get; set;}
+    public bool BotActive {get; set;}
+    public int LogPullIntervalInMinutes {get; set;}
+    public int LogPullBatchSize {get; set;}
 }
