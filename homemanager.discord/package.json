@@ -1,5 +1,5 @@
 {
-  "name": "homem_manager_discord",
+  "name": "home_manager_discord",
   "version": "1.0.0",
   "description": "The Discord portion of the homelab monitoring and managament system.",
   "license": "LGPL-3.0-or-later",
@@ -10,7 +10,7 @@
     "test": "tsc && mocha './tests/*/*.spec.*' --recursive --timeout 60000 --exit",
     "build": "npx tsc",
     "start": "node ./dist/index.js",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts --ignore ./src/.env"
   },
   "dependencies": {
     "discord.js": "^14.27.0",

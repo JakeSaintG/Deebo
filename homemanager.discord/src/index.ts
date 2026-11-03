@@ -16,7 +16,7 @@ const homeApiService = new HomeApiService();
 // May make /slash commands difficult?
 // May just want to make it work before I get fancy... First rule of optimization 
 
-let discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveDiscordToken();
+let discordToken = Env.DISCORD_TOKEN_FROM_ENV ? Env.DISCORD_TOKEN : homeApiService.retrieveBotToken();
 
 const commandsMap: Record<string, any> = {
     ping: PingCommand,
@@ -49,6 +49,8 @@ let backoff = 400;
 (async () => {
     let retries: number | null = null;
 
+    let foo = 0
+
     do {
         console.log('Attemping Discord connection...')
             await client.login(discordToken)
@@ -62,8 +64,8 @@ let backoff = 400;
                     // ...if I will implement a few express endpoints. Likely the event queue option for practice.
                     // Or a single endpoint that IS the event queue. Might not work the best if internet goes out? Need to test
                     setInterval(() => {
-                        // console.log('Polling... 1');
-                    }, 1000);
+
+                    }, 10000);
 
                 })
                 .catch(async e => {
