@@ -1,4 +1,5 @@
 using System.Data.Common;
+using HomeManager.Server.Context;
 using HomeManager.Server.Models;
 using HomeManager.Server.Repositories;
 

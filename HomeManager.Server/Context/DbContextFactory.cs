@@ -1,6 +1,8 @@
 using HomeManager.Server.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+namespace HomeManager.Server.Context;
+
 public static class DbContextFactory
 {
     public static HomeManagerContext Create()

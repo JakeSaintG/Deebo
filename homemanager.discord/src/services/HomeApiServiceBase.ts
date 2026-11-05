@@ -28,11 +28,11 @@ export class HomeApiServiceBase {
         if (!this.botToken) return;
     }
 
-    refreshToken(token: string) {
+    refreshBotToken(token: string) {
         this.tokenNotConfiguredEarlyReturn();
     }
 
-    retrieveToken() {
+    retrieveBotToken() {
         this.tokenNotConfiguredEarlyReturn();
     }
 

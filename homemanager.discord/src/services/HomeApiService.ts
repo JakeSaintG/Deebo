@@ -5,23 +5,26 @@ export class HomeApiService extends HomeApiServiceBase {
         super();
     }
 
-    refreshToken(token: string) {
-        super.refreshToken(token);
+    refreshBotToken(token: string) {
+        super.refreshBotToken(token);
         super.botToken = 'test';
     }
 
-    retrieveToken() {
-        super.retrieveToken();
+    retrieveBotToken() {
+        super.retrieveBotToken();
+
+        
+
         console.log('fetching token...')
     }
 
     refreshLeaderNodeIp(token: string) {
-        super.refreshToken(token);
+        super.refreshBotToken(token);
         super.leaderNodeIp = 'test';
     }
 
     retrieveLeaderNodeIp() {
-        super.retrieveToken();
+        super.retrieveBotToken();
         console.log('fetching ip...')
     }
 }

@@ -8,8 +8,9 @@
 
 public class BotConfiguration: IBotConfiguration
 {
-    public string BotKey {get; set;}
-    public bool BotActive {get; set;}
+    public required Guid BotId {get; set;}
+    public required string BotKey {get; set;}
+    public required bool BotActive {get; set;}
     public int LogPullIntervalInMinutes {get; set;}
     public int LogPullBatchSize {get; set;}
 }
