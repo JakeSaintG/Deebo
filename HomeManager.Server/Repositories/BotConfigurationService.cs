@@ -1,3 +1,4 @@
+using HomeManager.Server.Context;
 using HomeManager.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ namespace HomeManager.Server.Repositories;
 
 public class BotConfigurationService
 {
-    // public async Task<User> CreateBotConfigAsync()
+    // public async Task<BotConfiguration> CreateBotConfigAsync()
     // {
     //     using var dbContext = DbContextFactory.Create();
 
@@ -26,51 +27,55 @@ public class BotConfigurationService
     //     return user;
     // }
 
-    // public async Task<User?> GetUserByIdAsync(Guid id)
-    // {
-    //     using var dbContext = DbContextFactory.Create();
+    public async Task<BotConfiguration?> GetBotConfigByIdAsync(Guid id)
+    {
+        using var dbContext = DbContextFactory.Create();
 
-    //     return await dbContext.Users.FindAsync(id);
-    // }
+        BotConfiguration? result = await dbContext.BotConfiguration.FindAsync(id);
+        result?.BotKey = "REDACTED";
+        return result;
+    }
 
-    // public async Task<List<User>> GetAllUsersAsync()
-    // {
-    //     using var dbContext = DbContextFactory.Create();
+    public async Task<BotConfiguration?> UpdateBotConfigAsync(
+        Guid id,
+        string BotKey,
+        bool BotActive, 
+        int? LogPullIntervalInMinutes, 
+        int? LogPullBatchSize
+    )
+    {
+        using var dbContext = DbContextFactory.Create();
 
-    //     return await dbContext.Users.ToListAsync();
-    // }
+        var config = await dbContext.BotConfiguration.FindAsync(id);
+        if (config == null)
+        {
+            return null;
+        }
 
-    // public async Task<User?> UpdateUserAsync(Guid id, string name, string? email)
-    // {
-    //     using var dbContext = DbContextFactory.Create();
+        config.LastModifiedDts = new DateTime();
+        config.BotKey = BotKey;
+        config.BotActive = BotActive;
+        if (LogPullIntervalInMinutes != null) config.LogPullIntervalInMinutes = (int)LogPullIntervalInMinutes;
+        if (LogPullBatchSize != null) config.LogPullBatchSize = (int)LogPullBatchSize;
 
-    //     var user = await dbContext.Users.FindAsync(id);
-    //     if (user == null)
-    //     {
-    //         return null;
-    //     }
+        await dbContext.SaveChangesAsync();
 
-    //     user.Name = name;
-    //     user.Email = email;
+        return config;
+    }
 
-    //     await dbContext.SaveChangesAsync();
+    public async Task<bool> DeleteBotConfigAsync(Guid id)
+    {
+        using var dbContext = DbContextFactory.Create();
 
-    //     return user;
-    // }
+        var config = await dbContext.BotConfiguration.FindAsync(id);
+        if (config == null)
+        {
+            return false;
+        }
 
-    // public async Task<bool> DeleteUserAsync(Guid id)
-    // {
-    //     using var dbContext = DbContextFactory.Create();
+        dbContext.BotConfiguration.Remove(config);
+        await dbContext.SaveChangesAsync();
 
-    //     var user = await dbContext.Users.FindAsync(id);
-    //     if (user == null)
-    //     {
-    //         return false;
-    //     }
-
-    //     dbContext.Users.Remove(user);
-    //     await dbContext.SaveChangesAsync();
-
-    //     return true;
-    // }
+        return true;
+    }
 }

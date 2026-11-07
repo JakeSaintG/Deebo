@@ -13,4 +13,5 @@ public interface IBotConfiguration
     public bool BotActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public int LogPullIntervalInMinutes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public int LogPullBatchSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public DateTime LastModifiedDts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 }

@@ -13,4 +13,5 @@ public class BotConfiguration: IBotConfiguration
     public required bool BotActive {get; set;}
     public int LogPullIntervalInMinutes {get; set;}
     public int LogPullBatchSize {get; set;}
+    public DateTime LastModifiedDts  {get; set;}
 }
