@@ -26,7 +26,7 @@ public class LogController : ControllerBase
     [SwaggerResponse(201, "Request successful", typeof(LogEntry))]
     public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogEntryFromBody request)
     {
-        var user = await _logService.CreateLogEntryAsync(
+        var l = await _logService.CreateLogEntryAsync(
             request.Id,
             request.Name,
             request.LogLevel,
@@ -35,7 +35,7 @@ public class LogController : ControllerBase
             request.LogMessage
         );
 
-        return Ok(user);
+        return Ok(l);
     }
 
     [HttpGet("{id}")]
@@ -63,7 +63,7 @@ public class LogController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(200, "Request successful", typeof(LogEntry[]))]
-    public async Task<IActionResult> GetAllUsers()
+    public async Task<IActionResult> GetAllLogEntries()
     {
         var logEntriess = await _logService.GetAllLogEntriesAsync();
         return Ok(logEntriess);

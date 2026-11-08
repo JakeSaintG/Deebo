@@ -10,22 +10,34 @@ namespace HomeManager.Server.Repositories;
 
 public class BotConfigurationService
 {
-    // public async Task<BotConfiguration> CreateBotConfigAsync()
-    // {
-    //     using var dbContext = DbContextFactory.Create();
+    public async Task<BotConfiguration> CreateBotConfigAsync(
+        string BotName,
+        string BotKey,
+        bool BotActive,
+        int? LogPullIntervalInMinutes,
+        int? LogPullBatchSize
+    )
+    {
+        using var dbContext = DbContextFactory.Create();
 
-    //     var config = new BotConfiguration
-    //     {
-    //         Id = Guid.NewGuid(),
-    //         Name = name,
-    //         Email = email
-    //     };
+        int pullIntervalInMinutes = (int)((LogPullIntervalInMinutes != null) ? LogPullIntervalInMinutes : 5);
+        int pullBatchSize = (int)((LogPullBatchSize != null) ? LogPullBatchSize : 100);
 
-    //     dbContext.Users.Add(user);
-    //     await dbContext.SaveChangesAsync();
+        var config = new BotConfiguration
+        {
+            BotId = Guid.NewGuid(),
+            BotName = BotName,
+            BotKey = BotKey,
+            BotActive = BotActive,
+            LogPullIntervalInMinutes = pullIntervalInMinutes,
+            LogPullBatchSize = pullBatchSize,
+        };
 
-    //     return user;
-    // }
+        dbContext.BotConfiguration.Add(config);
+        await dbContext.SaveChangesAsync();
+
+        return config;
+    }
 
     public async Task<BotConfiguration?> GetBotConfigByIdAsync(Guid id)
     {
@@ -38,6 +50,7 @@ public class BotConfigurationService
 
     public async Task<BotConfiguration?> UpdateBotConfigAsync(
         Guid id,
+        string BotName,
         string BotKey,
         bool BotActive, 
         int? LogPullIntervalInMinutes, 
@@ -55,6 +68,7 @@ public class BotConfigurationService
         config.LastModifiedDts = new DateTime();
         config.BotKey = BotKey;
         config.BotActive = BotActive;
+        config.BotName = BotName;
         if (LogPullIntervalInMinutes != null) config.LogPullIntervalInMinutes = (int)LogPullIntervalInMinutes;
         if (LogPullBatchSize != null) config.LogPullBatchSize = (int)LogPullBatchSize;
 

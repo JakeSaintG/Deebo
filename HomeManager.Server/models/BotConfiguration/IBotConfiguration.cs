@@ -8,8 +8,9 @@
 
 public interface IBotConfiguration
 {
-    public Guid BotName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Guid BotId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string BotKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string BotName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public bool BotActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public int LogPullIntervalInMinutes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public int LogPullBatchSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
