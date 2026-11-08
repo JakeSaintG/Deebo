@@ -9,7 +9,6 @@ public class LogEntry: ILogEntry
     // - will be used by replication nodes to "true up"
 
     public required Guid Id { get; set; }
-    public required string Name { get; set; }
     public required string LogLevel { get; set; }
     public required string LogSource { get; set; }
     

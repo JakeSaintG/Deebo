@@ -6,20 +6,29 @@ namespace HomeManager.Server.Repositories;
 
 public class LogService
 {
-    // Create a new log entry
-    public async Task<LogEntry> CreateLogEntryAsync(Guid? id, string name, string logLevel, string logSource, DateTime? logDts, string? logMessage)
+    public async void Log (string message, string level = "INFO")
+    {
+        await CreateLogEntryAsync(
+            id: null,
+            logLevel: level,
+            logSource: "internal",
+            logDts: null,
+            logMessage: message
+        );
+    }
+    
+    public async Task<LogEntry> CreateLogEntryAsync(Guid? id, string logLevel, string logSource, DateTime? logDts, string? logMessage)
     {
         // I don't like this... Should probably always assign a guid
         // Maybe add an "idFromLogSource" field
-        Guid isAsGuid = (Guid)(id == null ? id : Guid.NewGuid());
-        DateTime logTime = (DateTime)(logDts == null ? logDts : DateTime.UtcNow);
+        Guid idAsGuid = (Guid)(id != null ? id : Guid.NewGuid());
+        DateTime logTime = (DateTime)(logDts != null ? logDts : DateTime.UtcNow);
 
         using var dbContext = DbContextFactory.Create();
 
         var log = new LogEntry
         {
-            Id = isAsGuid,
-            Name = name,
+            Id = idAsGuid,
             LogLevel = logLevel,
             LogSource = logSource,
             LogDts = logTime,
@@ -33,7 +42,6 @@ public class LogService
         return log;
     }
 
-    // Get a log entry by ID
     public async Task<LogEntry?> GetLogEntryByIdAsync(Guid id)
     {
         using var dbContext = DbContextFactory.Create();
@@ -41,7 +49,6 @@ public class LogService
         return await dbContext.LogEntries.FindAsync(id);
     }
 
-    // Get all log entries
     public async Task<List<LogEntry>> GetAllLogEntriesAsync()
     {
         using var dbContext = DbContextFactory.Create();
@@ -49,7 +56,6 @@ public class LogService
         return await dbContext.LogEntries.ToListAsync();
     }
 
-    // Update a log entry
     public async Task<LogEntry?> AckLogEntryAsync(Guid id, bool consumed)
     {
         using var dbContext = DbContextFactory.Create();
@@ -66,6 +72,4 @@ public class LogService
 
         return log;
     }
-
-    // Delete a log entry (not implemented)
 }

@@ -6,7 +6,6 @@ public interface ILogEntry {
     // - will be used by replication nodes to "true up"
     
     public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string LogLevel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string LogSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     

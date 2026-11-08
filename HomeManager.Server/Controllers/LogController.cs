@@ -28,7 +28,6 @@ public class LogController : ControllerBase
     {
         var l = await _logService.CreateLogEntryAsync(
             request.Id,
-            request.Name,
             request.LogLevel,
             request.LogSource,
             request.LogDts,
