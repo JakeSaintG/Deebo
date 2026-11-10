@@ -7,5 +7,6 @@ namespace HomeManager.Server.Models;
 public class UpdateLogRequestFromBody: ILogEntry
 {
     public required Guid Id { get; set; }
+    public required DateTime LastModifiedDts { get; set; }
     public bool Consumed { get; set; }
 }

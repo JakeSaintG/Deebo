@@ -20,16 +20,20 @@ public class HomeManagerContext : DbContext
         // Configure the table for entity: Users
         modelBuilder.Entity<User>().ToTable("Users");
         // Additional configurations (e.g., primary key, indexes)
-        modelBuilder.Entity<User>().HasKey(u => u.Id);
+        modelBuilder.Entity<User>(entity => entity.HasKey(u => u.Id));
 
         // Configure the table for entity: LogEntries
         modelBuilder.Entity<LogEntry>().ToTable("LogEntries");
         // Additional configurations (e.g., primary key, indexes)
-        modelBuilder.Entity<LogEntry>().HasKey(l => l.Id);
+        modelBuilder.Entity<LogEntry>(entity =>
+        {
+            entity.HasKey(l => l.Id);
+            entity.Property(p => p.ReplicationId).ValueGeneratedOnAdd();
+        });
 
         // Configure the table for entity: BotConfiguration
         modelBuilder.Entity<BotConfiguration>().ToTable("BotConfiguration");
         // Additional configurations (e.g., primary key, indexes)
-        modelBuilder.Entity<BotConfiguration>().HasKey(l => l.BotId);
+        modelBuilder.Entity<BotConfiguration>(entity => entity.HasKey(l => l.BotId));
     }
 }

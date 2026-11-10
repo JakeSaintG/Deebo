@@ -19,7 +19,7 @@ public class LogService
     
     public async Task<LogEntry> CreateLogEntryAsync(Guid? id, string logLevel, string logSource, DateTime? logDts, string? logMessage)
     {
-        // I don't like this... Should probably always assign a guid
+        // TODO: I don't like this... Should probably always assign a guid
         // Maybe add an "idFromLogSource" field
         Guid idAsGuid = (Guid)(id != null ? id : Guid.NewGuid());
         DateTime logTime = (DateTime)(logDts != null ? logDts : DateTime.UtcNow);
@@ -32,6 +32,7 @@ public class LogService
             LogLevel = logLevel,
             LogSource = logSource,
             LogDts = logTime,
+            LastModifiedDts = DateTime.UtcNow,
             LogMessage = logMessage,
             Consumed = false,
         };
@@ -61,10 +62,7 @@ public class LogService
         using var dbContext = DbContextFactory.Create();
 
         var log = await dbContext.LogEntries.FindAsync(id);
-        if (log == null)
-        {
-            return null;
-        }
+        if (log == null) return null;
 
         log.Consumed = consumed;
 
