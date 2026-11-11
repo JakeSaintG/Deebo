@@ -10,9 +10,11 @@ namespace HomeManager.Server.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly UserService _userService;
+    private readonly LogService _logService;
 
-    public UsersController(UserService userService)
+    public UsersController(UserService userService, LogService logService)
     {
+        _logService = logService;
         _userService = userService;
     }
 
@@ -23,6 +25,8 @@ public class UsersController : ControllerBase
     [SwaggerResponse(201, "Request successful", typeof(User))]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequestFromBody request)
     {
+        _logService.Log("CreateUser called", "VERBOSE");
+        
         var user = await _userService.CreateUserAsync(request.Name, request.Email);
         return Ok(user);
     }

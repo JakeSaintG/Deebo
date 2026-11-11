@@ -26,6 +26,8 @@ public class LogController : ControllerBase
     [SwaggerResponse(201, "Request successful", typeof(LogEntry))]
     public async Task<IActionResult> CreateLogEntry([FromBody] CreateLogEntryFromBody request)
     {
+        _logService.Log("CreateLogEntry called", "VERBOSE");
+        
         var l = await _logService.CreateLogEntryAsync(
             request.Id,
             request.LogLevel,
