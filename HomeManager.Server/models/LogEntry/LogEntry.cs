@@ -1,7 +1,10 @@
-using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeManager.Server.Models;
 
+[PrimaryKey(nameof(Id))]
 public class LogEntry: ILogEntry
 {
     public required Guid Id { get; set; }
@@ -9,7 +12,10 @@ public class LogEntry: ILogEntry
     public required string LogSource { get; set; }
     public required DateTime LogDts { get; set; }
     public required DateTime LastModifiedDts { get; set; }
-    public int? ReplicationId { get; set; }
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int ReplicationId { get; set; }
     public string? LogMessage { get; set; }
     public bool Consumed { get; set; }
 }
