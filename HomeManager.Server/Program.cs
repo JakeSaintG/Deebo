@@ -11,7 +11,7 @@ builder.Services.AddScoped<Func<HomeManagerContext>>(_ => DbContextFactory.Creat
 // Add services to the container.
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<LogService>();
-
+builder.Services.AddScoped<MinecraftService>(); // TODO: Do not inject if not configured? Maybe not? Would require restart if use configures it?
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

@@ -3,7 +3,7 @@ using System.Text;
 
 public class MinecraftService
 {
-    public static async Task<string> PingServerAsync(string serverIp, int port = 25565, int timeoutMs = 5000)
+    public async Task<string> PingServerAsync(string serverIp, int port = 25565, int timeoutMs = 5000)
     {
         using TcpClient client = new();
         var connectTask = client.ConnectAsync(serverIp, port);
