@@ -24,6 +24,13 @@ public class HomeManagerContext : DbContext
 
         // Configure the table for entity: LogEntries
         modelBuilder.Entity<LogEntry>().ToTable("LogEntries");
+        // Additional configurations (e.g., primary key, indexes)
+        modelBuilder.Entity<LogEntry>(entity =>
+        {
+            entity.HasKey(l => l.Id);
+            entity.HasKey(l => l.ReplicationId);
+            entity.Property(p => p.ReplicationId).HasColumnName(@"ReplicationId").IsRequired().ValueGeneratedOnAdd();
+        });
 
         // Configure the table for entity: BotConfiguration
         modelBuilder.Entity<BotConfiguration>().ToTable("BotConfiguration");
