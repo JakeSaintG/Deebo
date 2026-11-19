@@ -1,6 +1,8 @@
 using System.Net.Sockets;
 using System.Text;
 
+namespace HomeManager.Server.Repositories;
+
 public class MinecraftService
 {
     public async Task<string> PingServerAsync(string serverIp, int port = 25565, int timeoutMs = 5000)
